@@ -1,6 +1,6 @@
 # flutter_infinite_list_bloc
 
-A new Flutter project.
+An infinite list Flutter app based off this BLoC tutorial: https://felangel.github.io/bloc/#/flutterinfinitelisttutorial
 
 ## Getting Started
 
