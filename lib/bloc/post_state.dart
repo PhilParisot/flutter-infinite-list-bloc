@@ -21,7 +21,10 @@ class PostLoaded extends PostState {
   final List<Post> posts;
   final bool hasReachedMax;
 
-  PostLoaded({this.posts, this.hasReachedMax}) : super([posts, hasReachedMax]);
+  PostLoaded({
+    this.posts,
+    this.hasReachedMax,
+  }) : super([posts, hasReachedMax]);
 
   PostLoaded copyWith({
     List<Post> posts,
