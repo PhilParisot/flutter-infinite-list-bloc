@@ -1,7 +1,7 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:rxdart/rxdart.dart';
 import './bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +11,19 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;
 
   PostBloc({@required this.httpClient});
+
+  @override
+  Stream<PostState> transform(
+    Stream<PostEvent> events,
+    Stream<PostState> Function(PostEvent event) next,
+  ) {
+    return super.transform(
+      (events as Observable<PostEvent>).debounceTime(
+        Duration(milliseconds: 500),
+      ),
+      next,
+    );
+  }
 
   @override
   PostState get initialState => PostUninitialized();
