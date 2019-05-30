@@ -61,11 +61,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         'https://jsonplaceholder.typicode.com/posts?_start=$startIndex&_limit=$limit');
     if (response.statusCode == 200) {
       final data = json.decode(response.body) as List;
-      List<Post> posts;
-      for (var i in data) {
-        posts.add(Post.fromJson(i));
-      }
-      return posts;
+      return data.map((rawPost) {
+        return Post.fromJson(rawPost);
+      }).toList();
     } else {
       throw Exception('error fetching posts');
     }
